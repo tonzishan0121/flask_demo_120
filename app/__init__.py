@@ -1,14 +1,15 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from .config import Config
+def init_app():
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
+    app.config['JWT_SECRET_KEY'] = Config.JWT_SECRET_KEY
+    jwt = JWTManager(app)
+    return app
 
-app = Flask(__name__)
-app.config.from_object(Config)
+app=init_app()
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-jwt = JWTManager(app)
-
-from . import routes
+from .routes import routes
+routes()
