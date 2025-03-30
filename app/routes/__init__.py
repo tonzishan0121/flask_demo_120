@@ -1,4 +1,9 @@
-from .import login
+from . import login
+from .tasks import task_routes
 
-def routes():
-    return login
+login_route=login
+task_route=task_routes
+
+__all__ = [
+    'login_route','task_route'
+]

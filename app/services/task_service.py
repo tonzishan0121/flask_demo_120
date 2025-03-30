@@ -14,7 +14,10 @@ def create_task(id, status, statusText, location, description, time, response_ti
     return task
 
 def get_all_tasks():
-    return Task.get_all()
+    tasks=Task.get_all()
+    return [serialize_task(task) for task in tasks]
+    
+
 
 def get_task_by_id(task_id):
     return Task.get_by_id(task_id)
@@ -32,3 +35,14 @@ def delete_task(task_id):
         task.delete()
         return True
     return False
+
+def serialize_task(task):
+    return {
+        'id': task.id,
+        'status': task.status,
+        'statusText': task.statusText,
+        'location': task.location,
+        'description': task.description,
+        'time': task.time.isoformat() if task.time else None,
+        'response_time': task.response_time
+    }
