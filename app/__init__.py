@@ -11,5 +11,8 @@ def init_app():
 
 app=init_app()
 
-from .routes import routes
-routes()
+from .routes import login_route,task_route
+
+login_route
+task_route()
+__all__ = ['app']
