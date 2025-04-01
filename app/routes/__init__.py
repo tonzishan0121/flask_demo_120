@@ -1,9 +1,6 @@
-from . import login
+from .login import login_routes
 from .tasks import task_routes
 
-login_route=login
-task_route=task_routes
-
 __all__ = [
-    'login_route','task_route'
+    'login_routes','task_routes'
 ]
