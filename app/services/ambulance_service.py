@@ -1,4 +1,4 @@
-from app.models.ambulance import Ambulance
+from app.models import Ambulance
 
 def create_ambulance(ambulance_id, license_plate, status, statusText, driver_name, driver_phone):
     ambulance = Ambulance(
@@ -31,3 +31,16 @@ def delete_ambulance(ambulance_id):
         ambulance.delete()
         return True
     return False
+
+def get_idle_ambulance_count():
+    return Ambulance.get_idle_count()
+
+def get_total_ambulance_count():
+    return Ambulance.get_total_count()
+
+def get_idle_ambulance_percentage():
+    idle_count = get_idle_ambulance_count()
+    total_count = get_total_ambulance_count()
+    if total_count == 0:
+        return 0
+    return round((idle_count / total_count) * 100, 2)

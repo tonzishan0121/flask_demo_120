@@ -32,6 +32,14 @@ class Ambulance(db.Model):
     @classmethod
     def get_by_id(cls, ambulance_id):
         return cls.query.filter_by(ambulance_id=ambulance_id).first()
+    
+    @classmethod
+    def get_idle_count(cls):
+        return cls.query.filter_by(status='offline').count()
+
+    @classmethod
+    def get_total_count(cls):
+        return cls.query.count()
 
     def __repr__(self):
         return f"<Ambulance {self.ambulance_id}>"

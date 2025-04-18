@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timedelta
 from . import _db as db
 
 class Task(db.Model):
@@ -31,5 +31,29 @@ class Task(db.Model):
     @classmethod
     def get_by_id(cls, task_id):
         return cls.query.filter_by(id=task_id).first()
+    
+    @classmethod
+    def get_today_count(cls):
+        today_start = datetime.combine(datetime.now().date(), datetime.min.time())
+        today_end = today_start + timedelta(days=1)
+        return cls.query.filter(cls.time >= today_start, cls.time < today_end).count()
+
+    @classmethod
+    def get_yesterday_count(cls):
+        yesterday_start = datetime.combine(datetime.now().date() - timedelta(days=1), datetime.min.time())
+        yesterday_end = yesterday_start + timedelta(days=1)
+        return cls.query.filter(cls.time >= yesterday_start, cls.time < yesterday_end).count()
+    
+    @classmethod
+    def get_today_task_count_by_status(cls)->dict:
+        today_start = datetime.combine(datetime.now().date(), datetime.min.time())
+        today_end = today_start + timedelta(days=1)
+        status = ['completed', 'progressing', 'pending']
+        num={}
+        for i in status:
+            count = cls.query.filter(cls.time >= today_start, cls.time < today_end, cls.status == i).count()
+            num[i] = count
+        return num
+    
     def __repr__(self):
         return f"<Task {self.id}>"

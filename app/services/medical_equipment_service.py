@@ -1,4 +1,4 @@
-from app.models.medical_equipment import MedicalEquipment
+from app.models import MedicalEquipment
 
 def create_medical_equipment(equipment_id, name, status, statusText, ambulance_id):
     equipment = MedicalEquipment(
@@ -30,3 +30,4 @@ def delete_medical_equipment(equipment_id):
         equipment.delete()
         return True
     return False
+

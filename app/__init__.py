@@ -12,9 +12,13 @@ def init_app():
 
 app=init_app()
 
-from .routes import login_routes,task_routes,user_routes
+from .routes import login_routes,task_routes,user_routes,task_record_routes,ambulance_routes,medical_staff_routes
 
 login_routes()
 task_routes()
 user_routes()
+task_record_routes()
+ambulance_routes()
+medical_staff_routes()
+
 __all__ = ['app']

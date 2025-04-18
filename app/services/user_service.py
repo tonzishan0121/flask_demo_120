@@ -13,18 +13,19 @@ def test_user(pwd):
     user_pid=User.set_password(User(),pwd)
     return user_pid
 
+#验证用户密码
 def authenticate_user(email, password):
     user = User.query.filter_by(email=email).first()
     if user and user.check_password(password):
         return user
-    if email=='admin@admin.com':
-        return  User(email="admin@admin.com")
     return None
 
+#更新最后登录时间
 def update_last_login(email):
     User.update_last_login(email)
     return None
 
+#测试阶段方法
 def serialize_user(user,*args):
     user_password =user.password_hash
     is_right=check_password_hash(user_password,args)

@@ -33,5 +33,14 @@ class MedicalStaff(db.Model):
     @classmethod
     def get_by_id(cls, staff_id):
         return cls.query.filter_by(staff_id=staff_id).first()
+    
+    @classmethod
+    def get_standby_count(cls):
+        return cls.query.filter_by(status='standby').count()
+
+    @classmethod
+    def get_total_count(cls):
+        return cls.query.count()
+    
     def __repr__(self):
         return f"<MedicalStaff {self.staff_id}>"

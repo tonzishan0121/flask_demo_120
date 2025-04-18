@@ -1,4 +1,4 @@
-from app.models.task_record import TaskRecord
+from app.models import TaskRecord
 
 def create_task_record(task_id, ambulance_id, equipment_id, doctor_id, start_time, end_time, duration, task_status, task_statusText):
     record = TaskRecord(
@@ -28,9 +28,16 @@ def update_task_record(record_id, **kwargs):
         return record
     return None
 
-def delete_task_record(record_id):
-    record = TaskRecord.get_by_id(record_id)
-    if record:
-        record.delete()
-        return True
-    return False
+def get_today_avg_response_time():
+    return TaskRecord.get_today_avg_response_time()
+
+def get_yesterday_avg_response_time():
+    return TaskRecord.get_yesterday_avg_response_time()
+
+def get_response_time_change_percentage():
+    today_avg = get_today_avg_response_time()
+    yesterday_avg = get_yesterday_avg_response_time()
+    if yesterday_avg == 0:
+        return 0 if today_avg == 0 else float('inf')
+    change = ((today_avg - yesterday_avg) / yesterday_avg) * 100
+    return round(change, 2)

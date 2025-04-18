@@ -1,4 +1,4 @@
-from app.models.medical_staff import MedicalStaff
+from app.models import MedicalStaff
 
 def create_medical_staff(staff_id, name, role, status, statusText, phone, ambulance_id=None):
     staff = MedicalStaff(
@@ -32,3 +32,17 @@ def delete_medical_staff(staff_id):
         staff.delete()
         return True
     return False
+
+
+def get_standby_staff_count():
+    return MedicalStaff.get_standby_count()
+
+def get_total_staff_count():
+    return MedicalStaff.get_total_count()
+
+def get_standby_staff_percentage():
+    standby_count = get_standby_staff_count()
+    total_count = get_total_staff_count()
+    if total_count == 0:
+        return 0
+    return round((standby_count / total_count) * 100, 2)

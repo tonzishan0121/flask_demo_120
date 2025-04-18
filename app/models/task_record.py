@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timedelta
 from . import _db as db
 
 class TaskRecord(db.Model):
@@ -35,5 +35,24 @@ class TaskRecord(db.Model):
     @classmethod
     def get_by_id(cls, record_id):
         return cls.query.filter_by(record_id=record_id).first()
+    
+    @classmethod
+    def get_today_avg_response_time(cls):
+        today = datetime.now().date()
+        today_records = cls.query.filter(cls.start_time == today).all()
+        if not today_records:
+            return 0
+        total_duration = sum(record.duration for record in today_records)
+        return total_duration / len(today_records)
+
+    @classmethod
+    def get_yesterday_avg_response_time(cls):
+        yesterday = datetime.now().date() - timedelta(days=1)
+        yesterday_records = cls.query.filter(cls.start_time == yesterday).all()
+        if not yesterday_records:
+            return 0
+        total_duration = sum(record.duration for record in yesterday_records)
+        return total_duration / len(yesterday_records)
+
     def __repr__(self):
         return f"<TaskRecord {self.record_id}>"
