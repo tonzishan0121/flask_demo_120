@@ -32,5 +32,13 @@ class MedicalEquipment(db.Model):
     def get_by_id(cls, equipment_id):
         return cls.query.filter_by(equipment_id=equipment_id).first()
     
+    @classmethod
+    def get_available_count(cls):
+        return cls.query.filter_by(status='available').count()
+
+    @classmethod
+    def get_total_count(cls):
+        return cls.query.count()
+    
     def __repr__(self):
         return f"<MedicalEquipment {self.equipment_id}>"

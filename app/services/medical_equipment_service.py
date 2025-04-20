@@ -31,3 +31,17 @@ def delete_medical_equipment(equipment_id):
         return True
     return False
 
+
+def get_available_equipment_count():
+    return MedicalEquipment.get_available_count()
+
+def get_total_equipment_count():
+    return MedicalEquipment.get_total_count()
+
+def get_available_equipment_percentage():
+    standby_count = get_available_equipment_count()
+    total_count = get_total_equipment_count()
+    if total_count == 0:
+        return 0
+    return round((standby_count / total_count) * 100, 2)
+

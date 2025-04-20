@@ -13,6 +13,6 @@ __all__ = ['authenticate_user','update_last_login','get_all_users','post_test','
            #/medical_staff部分方法
            'create_medical_staff','delete_medical_staff','get_all_medical_staff','get_medical_staff_by_id','update_medical_staff',
            #/medical_equipment部分方法
-           'create_medical_equipment','delete_medical_equipment','get_all_medical_equipment','get_medical_equipment_by_id','update_medical_equipment',
+           'create_medical_equipment','delete_medical_equipment','get_all_medical_equipment','get_medical_equipment_by_id','update_medical_equipment','get_available_equipment_percentage',
            #/ambulance部分方法
            'create_ambulance','delete_ambulance','get_all_ambulances','get_ambulance_by_id','update_ambulance','get_idle_ambulance_percentag','get_idle_ambulance_count']

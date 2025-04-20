@@ -48,7 +48,7 @@ class Task(db.Model):
     def get_today_task_count_by_status(cls)->dict:
         today_start = datetime.combine(datetime.now().date(), datetime.min.time())
         today_end = today_start + timedelta(days=1)
-        status = ['completed', 'progressing', 'pending']
+        status = ['completed', 'processing', 'pending']
         num={}
         for i in status:
             count = cls.query.filter(cls.time >= today_start, cls.time < today_end, cls.status == i).count()
