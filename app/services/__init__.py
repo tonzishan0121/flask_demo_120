@@ -4,6 +4,7 @@ from .task_record_service import *
 from .medical_staff_service import *
 from .medical_equipment_service import *
 from .ambulance_service import *
+from .bot_server import *
             #user部分方法&login方法
 __all__ = ['authenticate_user','update_last_login','get_all_users','post_test','test_user',
            #/task部分方法
@@ -15,4 +16,7 @@ __all__ = ['authenticate_user','update_last_login','get_all_users','post_test','
            #/medical_equipment部分方法
            'create_medical_equipment','delete_medical_equipment','get_all_medical_equipment','get_medical_equipment_by_id','update_medical_equipment','get_available_equipment_percentage',
            #/ambulance部分方法
-           'create_ambulance','delete_ambulance','get_all_ambulances','get_ambulance_by_id','update_ambulance','get_idle_ambulance_percentag','get_idle_ambulance_count']
+           'create_ambulance','delete_ambulance','get_all_ambulances','get_ambulance_by_id','update_ambulance','get_idle_ambulance_percentag','get_idle_ambulance_count',
+           #/bot_server部分方法
+          'get_model_response'
+           ]

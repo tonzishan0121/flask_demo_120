@@ -12,7 +12,7 @@ def init_app():
 
 app=init_app()
 
-from .routes import login_routes,task_routes,user_routes,task_record_routes,ambulance_routes,medical_staff_routes,medical_equipment_routes
+from .routes import *
 
 login_routes()
 task_routes()
@@ -21,5 +21,6 @@ task_record_routes()
 ambulance_routes()
 medical_staff_routes()
 medical_equipment_routes()
+app.register_blueprint(bot_bp)
 
 __all__ = ['app']
