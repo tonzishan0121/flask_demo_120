@@ -6,7 +6,9 @@ from .task_record_routes import task_record_routes
 from .medical_staff_routes import medical_staff_routes
 from .medical_equipment_routes import medical_equipment_routes
 from .bot_routes import bot_bp
+from .analyze_routes import analyze_routes
 
 __all__ = [
-    'login_routes','task_routes','user_routes','ambulance_routes','task_record_routes','medical_staff_routes','medical_equipment_routes','bot_bp'
+    'login_routes','task_routes','user_routes','ambulance_routes','task_record_routes','medical_staff_routes','medical_equipment_routes','bot_bp',
+    'analyze_routes'
 ]

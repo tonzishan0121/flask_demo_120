@@ -22,8 +22,17 @@ def authenticate_user(email, password):
 
 #更新最后登录时间
 def update_last_login(email):
-    User.update_last_login(email)
-    return None
+    user = User.query.filter_by(email=email).first()
+    
+    if not user:
+        return {"status": "error", "message": "用户不存在"}
+    
+    # 调用模型方法判断
+    if user.update_last_login():
+        return {"status": "success", "message": "登录时间已更新"}
+    else:
+        print(user.up)
+        return {"status": "expired", "message": "登录状态已过期"}
 
 #测试阶段方法
 def serialize_user(user,*args):

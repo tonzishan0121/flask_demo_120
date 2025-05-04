@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timedelta
 from . import _db as db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -26,12 +26,13 @@ class User(db.Model):
     def get_all(cls):
         return cls.query.all()
 
-    #刷新用户登陆时间
-    @staticmethod
-    def update_last_login(email):
-        user=User.query.filter_by(email=email).first()
-        user.last_login = datetime.now()
+    def update_last_login(self):
+        now = datetime.now()
+        # 检查是否超过24小时
+        self.last_login = now
         db.session.commit()
+        print(self.last_login)
+        return True  # 更新成功
 
     
     def __repr__(self):

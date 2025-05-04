@@ -1,4 +1,5 @@
 from flask import request, jsonify
+from flask_jwt_extended import jwt_required
 from app.services.task_service import *
 from app import app
     #新建任务记录
@@ -19,6 +20,7 @@ def task_routes():
 
     # 获取所有任务记录
     @app.route('/tasks', methods=['GET'])
+    @jwt_required()
     def get_all_tasks_route():
         tasks = get_all_tasks()
         return jsonify(tasks), 200

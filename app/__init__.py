@@ -22,5 +22,6 @@ ambulance_routes()
 medical_staff_routes()
 medical_equipment_routes()
 app.register_blueprint(bot_bp)
+app.register_blueprint(analyze_routes)
 
 __all__ = ['app']

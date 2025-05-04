@@ -11,7 +11,8 @@ def login_routes():
         user = authenticate_user(email, password)
         if user:
             access_token = create_access_token(identity=user.email)
-            user.update_last_login(email)
+            update_last_login(str(email))
+            
             return jsonify(access_token=access_token), 200
         else:
             return jsonify(message='Invalid credentials'), 401

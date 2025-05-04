@@ -5,6 +5,7 @@ from .medical_staff_service import *
 from .medical_equipment_service import *
 from .ambulance_service import *
 from .bot_server import *
+from .analyze_service import *
             #user部分方法&login方法
 __all__ = ['authenticate_user','update_last_login','get_all_users','post_test','test_user',
            #/task部分方法
@@ -18,5 +19,7 @@ __all__ = ['authenticate_user','update_last_login','get_all_users','post_test','
            #/ambulance部分方法
            'create_ambulance','delete_ambulance','get_all_ambulances','get_ambulance_by_id','update_ambulance','get_idle_ambulance_percentag','get_idle_ambulance_count',
            #/bot_server部分方法
-          'get_model_response'
+          'get_model_response',
+           #可视化分析方法
+           'get_task_trend','get_region_distribution','get_task_status','get_ambulance_status','get_medical_staff_status','get_response_time'
            ]

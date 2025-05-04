@@ -8,8 +8,8 @@ class TaskRecord(db.Model):
     ambulance_id = db.Column(db.String(20), db.ForeignKey('ambulances.ambulance_id'), nullable=False)
     equipment_id = db.Column(db.String(20), db.ForeignKey('medical_equipment.equipment_id'), nullable=False)
     doctor_id = db.Column(db.String(20), db.ForeignKey('medical_staff.staff_id'), nullable=False)
-    start_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    end_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    start_time = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=False, default=datetime.now)
     duration = db.Column(db.Integer, nullable=False)
     task_status = db.Column(db.String(20), nullable=False)
     task_statusText = db.Column(db.String(50), nullable=False)
@@ -30,7 +30,7 @@ class TaskRecord(db.Model):
 
     @classmethod
     def get_all(cls):
-        return cls.query.all()
+        return cls.query.limit(50).all()
 
     @classmethod
     def get_by_id(cls, record_id):

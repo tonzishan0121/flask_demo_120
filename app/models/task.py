@@ -26,7 +26,7 @@ class Task(db.Model):
 
     @classmethod
     def get_all(cls):
-        return cls.query.all()
+        return cls.query.limit(50).all()
 
     @classmethod
     def get_by_id(cls, task_id):

@@ -47,7 +47,6 @@ flask_demo_120/
 │   │   └── medical_*_routes.py
 │   ├── services/             # 业务逻辑
 │   └── __init__.py           # 应用初始化
-├── tests/                    # 单元测试
 ├── requirements.txt          # 依赖列表
 ├── run.py                    # 启动脚本
 └── admin.html                # 管理端界面
