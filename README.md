@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+
 ## 技术栈
 - **后端框架**: Flask 2.0+
 - **数据库**: MySQL 8.0+
